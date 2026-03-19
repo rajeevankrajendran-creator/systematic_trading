@@ -23,12 +23,13 @@ def root():
 
 # Endpoint for https://your-domain.com/predict?input_one=154&input_two=199
 @app.get("/predict")
-def get_predict(input_one: float,
-            input_two: float):
+def get_predict(input_one: float, #date
+            input_two: float): #amount
     # TODO: Do something with your input
     # i.e. feed it to your model.predict, and return the output
     # For a dummy version, just return the sum of the two inputs and the original inputs
     prediction = float(input_one) + float(input_two)
+    # return the summary (call the backtest.py)
     return {
         'prediction': prediction,
         'inputs': {
