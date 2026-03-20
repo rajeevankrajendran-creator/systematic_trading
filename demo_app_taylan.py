@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import requests
 import traceback
+import time
+import json
 
 st.set_page_config(page_title="Systematic Trading Demo", layout="wide")
 
@@ -23,40 +25,52 @@ with st.form("backtest_form"):
     submitted = st.form_submit_button("Run backtest")
 
 if submitted:
+    params = {
+        "cutoff_date": cutoff_date.strftime("%Y-%m-%d"),
+        "initial_capital": float(initial_capital),
+    }
+
+    status = st.status("Running backtest...", expanded=True)
+
     try:
-        if show_debug:
-            st.write("Sending request to API...")
-            st.write(
-                {
-                    "url": API_URL,
-                    "cutoff_date": cutoff_date.strftime("%Y-%m-%d"),
-                    "initial_capital": float(initial_capital),
-                }
-            )
+        status.write(f"Sending GET to `{API_URL}`")
+        status.write(f"Params: `{params}`")
 
-        with st.spinner("Running backtest..."):
-            response = requests.get(
-                API_URL,
-                params={
-                    "cutoff_date": cutoff_date.strftime("%Y-%m-%d"),
-                    "initial_capital": float(initial_capital),
-                },
-                timeout=30,
-            )
+        t0 = time.time()
+        status.write("Waiting for API response...")
+
+        session = requests.Session()
+        response = session.get(
+            API_URL,
+            params=params,
+            timeout=(10, 120),  # 10s connect timeout, 120s read timeout
+            stream=True,
+        )
+
+        elapsed_connect = time.time() - t0
+        status.write(f"Connected in {elapsed_connect:.1f}s — status {response.status_code}")
 
         if show_debug:
-            st.write(f"Response status: {response.status_code}")
-            st.write("Response headers:")
-            st.write(dict(response.headers))
+            with status.expander("Response headers"):
+                st.write(dict(response.headers))
 
         response.raise_for_status()
-        summary = response.json()
+
+        # Read the full body (stream=True means we need to read it manually)
+        status.write("Reading response body...")
+        raw_body = response.content
+        elapsed_total = time.time() - t0
+        status.write(f"Body received in {elapsed_total:.1f}s ({len(raw_body)} bytes)")
+
+        summary = json.loads(raw_body)
 
         if show_debug:
-            st.write("Response received successfully.")
-            st.write("Top-level keys:")
-            st.write(list(summary.keys()))
+            with status.expander("Raw JSON response"):
+                st.json(summary)
 
+        status.update(label="Backtest complete", state="complete", expanded=False)
+
+        # ---- Results ----
         st.success("Backtest complete")
 
         col1, col2, col3, col4 = st.columns(4)
@@ -112,20 +126,39 @@ if submitted:
             )
             st.dataframe(action_df, use_container_width=True, hide_index=True)
 
+    except requests.exceptions.ConnectTimeout:
+        status.update(label="Failed — connection timeout", state="error")
+        st.error("Could not connect to the API within 10 seconds. Is the service running?")
+        if show_debug:
+            st.code(traceback.format_exc(), language="python")
+
+    except requests.exceptions.ReadTimeout:
+        status.update(label="Failed — read timeout", state="error")
+        st.error("Connected to the API but the response took longer than 120 seconds.")
+        if show_debug:
+            st.code(traceback.format_exc(), language="python")
+
     except requests.exceptions.HTTPError as e:
+        status.update(label=f"Failed — HTTP {response.status_code}", state="error")
         st.error(f"HTTP error: {e}")
-        st.code(response.text if "response" in locals() else "No response body", language="text")
-        print("HTTP ERROR")
-        print(traceback.format_exc())
+        if show_debug:
+            st.code(response.text if "response" in locals() else "No response body", language="text")
+            st.code(traceback.format_exc(), language="python")
+
+    except requests.exceptions.ConnectionError as e:
+        status.update(label="Failed — connection error", state="error")
+        st.error(f"Could not reach the API: {e}")
+        if show_debug:
+            st.code(traceback.format_exc(), language="python")
 
     except requests.exceptions.RequestException as e:
+        status.update(label="Failed — request error", state="error")
         st.error(f"Request error: {e}")
-        st.code(traceback.format_exc(), language="python")
-        print("REQUEST ERROR")
-        print(traceback.format_exc())
+        if show_debug:
+            st.code(traceback.format_exc(), language="python")
 
     except Exception as e:
+        status.update(label="Failed — unexpected error", state="error")
         st.error(f"Unexpected error: {e}")
-        st.code(traceback.format_exc(), language="python")
-        print("UNEXPECTED ERROR")
-        print(traceback.format_exc())
+        if show_debug:
+            st.code(traceback.format_exc(), language="python")
