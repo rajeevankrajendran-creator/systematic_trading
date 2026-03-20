@@ -1,6 +1,7 @@
 # data science
 numpy<2.0.0
 pandas==2.2.3
+scikit-learn==1.6.1
 
 # Uncomment if you use sklearn
 # scikit-learn==1.6.1
@@ -13,6 +14,10 @@ pandas==2.2.3
 # Google Cloud
 # Uncomment if you use Google Cloud Storage
 # google-cloud-storage
+
+# trading
+lightgbm
+pandas-ta
 
 # API
 fastapi
