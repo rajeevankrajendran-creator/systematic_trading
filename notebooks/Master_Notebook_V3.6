@@ -5,18 +5,11 @@
    "id": "772ff22d-3108-4e73-a3ab-d8c5b971166f",
    "metadata": {},
    "source": [
-    "# This version has our improved model with aff features for H1, H2, and H3\n",
+    "# This version checks a new strategy where we are testing statistically signficant features and most promising N derived for forward returns and for creating N lags\n",
     "\n",
     "# Master Notebook — Execution Filter v2\n",
     "\n",
-    "**Strategy 1 | Long Only | Bull Regime | EMA 14 Stop Loss | Time Exit**\n",
-    "\n",
-    "Changes vs. v2:\n",
-    "- Label: regime filter as label modifier (not row filter)\n",
-    "- Stop Loss: EMA 14 dynamic stop (close < EMA 14)\n",
-    "- Exit: Time Exit after N=5 bars (replaces Regime Exit + Signal Exit)\n",
-    "- Position Sizing: configurable via POSITION_SIZE (currently 100%)\n",
-    "- Transaction Costs: directly tracked per trade"
+    "**Strategy 1 | Long Only | Bull Regime | EMA 14 Stop Loss | Time Exit**\n"
    ]
   },
   {
@@ -25,11 +18,11 @@
    "id": "3af6054c-4edd-4476-b962-b9391aec0375",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:18.264084Z",
-     "iopub.status.busy": "2026-03-23T21:48:18.263940Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.497105Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.496632Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:18.264067Z"
+     "iopub.execute_input": "2026-03-23T23:22:14.288638Z",
+     "iopub.status.busy": "2026-03-23T23:22:14.287973Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.646536Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.646175Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:14.288610Z"
     }
    },
    "outputs": [],
@@ -54,11 +47,11 @@
    "id": "37cc505d-c450-4241-a2e8-9e03bb514b6c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.497476Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.497354Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.575237Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.574617Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.497468Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.646982Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.646825Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.711499Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.711029Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.646974Z"
     }
    },
    "outputs": [],
@@ -88,11 +81,11 @@
    "id": "04334323-036d-4c5c-a0a3-e4d6bc89eb4c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.575922Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.575815Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.602418Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.601939Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.575913Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.711912Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.711836Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.734163Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.733505Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.711905Z"
     }
    },
    "outputs": [],
@@ -107,11 +100,11 @@
    "id": "03153d4f-62d1-4ec6-a23b-02142684b0c9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.602833Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.602750Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.605523Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.604948Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.602825Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.734781Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.734618Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.737370Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.736917Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.734771Z"
     }
    },
    "outputs": [],
@@ -149,11 +142,11 @@
    "id": "07e3c8dd-4ace-4131-968f-30d7bbdf82cc",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.606115Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.606023Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.631119Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.626017Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.606106Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.737870Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.737782Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.745926Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.745254Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.737861Z"
     },
     "scrolled": true
    },
@@ -272,11 +265,11 @@
    "id": "16876ed9-6572-4feb-9070-c4c58b6bb99f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.632308Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.632107Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.641171Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.638787Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.632289Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.746418Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.746331Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.749195Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.748416Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.746409Z"
     }
    },
    "outputs": [],
@@ -309,16 +302,51 @@
    "id": "cfc3c780-413c-4123-a0d8-df6f27d6b0ee",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.642352Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.642063Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.738738Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.738260Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.642331Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.749585Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.749504Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.828283Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.827732Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.749576Z"
     }
    },
    "outputs": [],
    "source": [
     "df = feature_pipeline(df)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "1e47f530-0373-4ea5-8cd6-a53d51dc7a20",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-03-23T23:22:15.828730Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.828638Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.833066Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.832164Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.828722Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Index(['Open', 'High', 'Low', 'Close', 'Volume', 'Close time',\n",
+       "       'Quote asset volume', 'Number of trades', 'Taker buy base asset volume',\n",
+       "       'Taker buy quote asset volume', 'Ignore', 'roc_10', 'roc_21',\n",
+       "       'macd_histogram', 'adx', 'rsi_14', 'rsi_divergence', 'obv_change',\n",
+       "       'volume_roc', 'sma_20', 'sigma', 'upper_band', 'lower_band',\n",
+       "       'bandwidth', 'atr_14', 'natr', 'sma_50', 'sma_200', 'regime', 'ema_12'],\n",
+       "      dtype='str')"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.columns"
    ]
   },
   {
@@ -331,21 +359,21 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": 9,
    "id": "a4abae78-4f44-4369-b8a6-df3bc4093856",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.739100Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.739012Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.741586Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.740944Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.739093Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.833757Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.833648Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.837156Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.836209Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.833747Z"
     }
    },
    "outputs": [],
    "source": [
     "# Lookahead window - change this value to test different horizons\n",
-    "N = 5\n",
+    "N = 12\n",
     "\n",
     "# Step 1 - Forward return\n",
     "df['forward_return'] = df['Close'].pct_change(periods=N).shift(-N)"
@@ -353,15 +381,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 9,
+   "execution_count": 10,
    "id": "a7fd2844-9cec-438f-9659-803787057d7f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.742167Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.742087Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.745279Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.744619Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.742159Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.837548Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.837461Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.842151Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.841167Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.837539Z"
     }
    },
    "outputs": [],
@@ -386,32 +414,96 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
+   "execution_count": 11,
    "id": "9111e738-9d7d-4efa-b3d8-8d72be6f910b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.745781Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.745699Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.777714Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.777219Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.745772Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.842902Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.842688Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.919306Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.918812Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.842890Z"
     }
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Feature columns (base):   8\n",
+      "Lag columns created:      82\n",
+      "Total feature columns:    90\n",
+      "Rows after dropna:        71,543\n"
+     ]
+    }
+   ],
    "source": [
-    "# Number of lags to create\n",
-    "N_lags = 5\n",
+    "# ── Lag Creation — Variable Depth per Feature ──────────────────────────────\n",
+    "lag_config = {\n",
+    "    'Volume':         12,\n",
+    "    'roc_10':          5,\n",
+    "    'roc_21':         12,\n",
+    "    'macd_histogram': 12,\n",
+    "    'rsi_14':          5,\n",
+    "    'natr':           12,\n",
+    "    'bandwidth':      12,\n",
+    "    'atr_14':         12,\n",
+    "}\n",
     "\n",
-    "feature_cols = ['Volume', 'roc_10', 'roc_21', 'macd_histogram', 'adx', 'rsi_14', 'rsi_divergence',\n",
-    "                'obv_change', 'volume_roc', 'bandwidth', 'atr_14', 'natr']\n",
+    "feature_cols = list(lag_config.keys())\n",
     "\n",
-    "# Create lags for all feature columns\n",
-    "for col in feature_cols:\n",
-    "    for lag in range(1, N_lags + 1):\n",
-    "        df[f'{col}_lag{lag}'] = df[col].shift(lag)\n",
+    "# Build all lag columns at once — avoids DataFrame fragmentation warning\n",
+    "lag_frames = []\n",
+    "all_lag_cols = []\n",
     "\n",
-    "# Drop NaN rows created by the lags\n",
-    "df = df.dropna(subset=feature_cols + [f'{col}_lag{i}' for col in feature_cols for i in range(1, N_lags + 1)] + ['label'])"
+    "for col, n_lags in lag_config.items():\n",
+    "    for lag in range(1, n_lags + 1):\n",
+    "        col_name = f'{col}_lag{lag}'\n",
+    "        lag_frames.append(df[col].shift(lag).rename(col_name))\n",
+    "        all_lag_cols.append(col_name)\n",
+    "\n",
+    "# Join all lags to df in a single operation\n",
+    "df = pd.concat([df] + lag_frames, axis=1)\n",
+    "\n",
+    "# Drop NaN rows\n",
+    "df = df.dropna(subset=feature_cols + all_lag_cols + ['label'])\n",
+    "\n",
+    "print(f\"Feature columns (base):   {len(feature_cols)}\")\n",
+    "print(f\"Lag columns created:      {len(all_lag_cols)}\")\n",
+    "print(f\"Total feature columns:    {len(feature_cols) + len(all_lag_cols)}\")\n",
+    "print(f\"Rows after dropna:        {len(df):,}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "97851fe9-8b24-48d3-997c-a4b4b36d9e19",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-03-23T23:22:15.919677Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.919596Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.922203Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.921702Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.919669Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "X shape: (71543, 90)\n"
+     ]
+    }
+   ],
+   "source": [
+    "# ── Feature Matrix ──────────────────────────────────────────────────────────\n",
+    "# Built from feature_cols (base) + all_lag_cols (variable depth per feature)\n",
+    "# Column list is generated from lag_config — no manual listing needed\n",
+    "\n",
+    "X = df[feature_cols + all_lag_cols]\n",
+    "\n",
+    "print(f\"X shape: {X.shape}\")"
    ]
   },
   {
@@ -424,15 +516,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 11,
+   "execution_count": 13,
    "id": "f1990f7f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.778056Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.777968Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.779788Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.779308Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.778048Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.923354Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.923257Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.925975Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.925025Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.923345Z"
     }
    },
    "outputs": [],
@@ -443,15 +535,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 12,
+   "execution_count": 14,
    "id": "e8ba7d5a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.780208Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.780131Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.781965Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.781598Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.780200Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.926769Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.926552Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.929061Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.928486Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.926759Z"
     }
    },
    "outputs": [],
@@ -470,97 +562,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 13,
-   "id": "0e4327e8-09b6-4903-a21c-3f1207fc3fe3",
-   "metadata": {
-    "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.782277Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.782214Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.786405Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.785960Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.782270Z"
-    }
-   },
-   "outputs": [
-    {
-     "data": {
-      "text/plain": [
-       "Index(['Open', 'High', 'Low', 'Close', 'Volume', 'Close time',\n",
-       "       'Quote asset volume', 'Number of trades', 'Taker buy base asset volume',\n",
-       "       'Taker buy quote asset volume', 'Ignore', 'roc_10', 'roc_21',\n",
-       "       'macd_histogram', 'adx', 'rsi_14', 'rsi_divergence', 'obv_change',\n",
-       "       'volume_roc', 'sma_20', 'sigma', 'upper_band', 'lower_band',\n",
-       "       'bandwidth', 'atr_14', 'natr', 'sma_50', 'sma_200', 'regime', 'ema_12',\n",
-       "       'forward_return', 'label', 'Volume_lag1', 'Volume_lag2', 'Volume_lag3',\n",
-       "       'Volume_lag4', 'Volume_lag5', 'roc_10_lag1', 'roc_10_lag2',\n",
-       "       'roc_10_lag3', 'roc_10_lag4', 'roc_10_lag5', 'roc_21_lag1',\n",
-       "       'roc_21_lag2', 'roc_21_lag3', 'roc_21_lag4', 'roc_21_lag5',\n",
-       "       'macd_histogram_lag1', 'macd_histogram_lag2', 'macd_histogram_lag3',\n",
-       "       'macd_histogram_lag4', 'macd_histogram_lag5', 'adx_lag1', 'adx_lag2',\n",
-       "       'adx_lag3', 'adx_lag4', 'adx_lag5', 'rsi_14_lag1', 'rsi_14_lag2',\n",
-       "       'rsi_14_lag3', 'rsi_14_lag4', 'rsi_14_lag5', 'rsi_divergence_lag1',\n",
-       "       'rsi_divergence_lag2', 'rsi_divergence_lag3', 'rsi_divergence_lag4',\n",
-       "       'rsi_divergence_lag5', 'obv_change_lag1', 'obv_change_lag2',\n",
-       "       'obv_change_lag3', 'obv_change_lag4', 'obv_change_lag5',\n",
-       "       'volume_roc_lag1', 'volume_roc_lag2', 'volume_roc_lag3',\n",
-       "       'volume_roc_lag4', 'volume_roc_lag5', 'bandwidth_lag1',\n",
-       "       'bandwidth_lag2', 'bandwidth_lag3', 'bandwidth_lag4', 'bandwidth_lag5',\n",
-       "       'atr_14_lag1', 'atr_14_lag2', 'atr_14_lag3', 'atr_14_lag4',\n",
-       "       'atr_14_lag5', 'natr_lag1', 'natr_lag2', 'natr_lag3', 'natr_lag4',\n",
-       "       'natr_lag5'],\n",
-       "      dtype='str')"
-      ]
-     },
-     "execution_count": 13,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "df.columns"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 14,
-   "id": "d72c08d6-1f91-4cf1-8074-62455a3e3fc1",
-   "metadata": {
-    "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.786970Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.786887Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.790114Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.789595Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.786961Z"
-    }
-   },
-   "outputs": [],
-   "source": [
-    "X = df[['Volume', 'Volume_lag1', 'Volume_lag2', 'Volume_lag3', 'Volume_lag4', 'Volume_lag5',\n",
-    "        'roc_10', 'roc_10_lag1', 'roc_10_lag2', 'roc_10_lag3', 'roc_10_lag4', 'roc_10_lag5',\n",
-    "        'roc_21', 'roc_21_lag1', 'roc_21_lag2', 'roc_21_lag3', 'roc_21_lag4', 'roc_21_lag5',\n",
-    "        'macd_histogram', 'macd_histogram_lag1', 'macd_histogram_lag2', 'macd_histogram_lag3', 'macd_histogram_lag4', 'macd_histogram_lag5',\n",
-    "        'adx', 'adx_lag1', 'adx_lag2', 'adx_lag3', 'adx_lag4', 'adx_lag5',\n",
-    "        'rsi_14', 'rsi_14_lag1', 'rsi_14_lag2', 'rsi_14_lag3', 'rsi_14_lag4', 'rsi_14_lag5',\n",
-    "        'rsi_divergence', 'rsi_divergence_lag1', 'rsi_divergence_lag2', 'rsi_divergence_lag3', 'rsi_divergence_lag4', 'rsi_divergence_lag5',\n",
-    "        'obv_change', 'obv_change_lag1', 'obv_change_lag2', 'obv_change_lag3', 'obv_change_lag4', 'obv_change_lag5',\n",
-    "        'volume_roc', 'volume_roc_lag1', 'volume_roc_lag2', 'volume_roc_lag3', 'volume_roc_lag4', 'volume_roc_lag5',\n",
-    "        'bandwidth', 'bandwidth_lag1', 'bandwidth_lag2', 'bandwidth_lag3', 'bandwidth_lag4', 'bandwidth_lag5',\n",
-    "        'atr_14', 'atr_14_lag1', 'atr_14_lag2', 'atr_14_lag3', 'atr_14_lag4', 'atr_14_lag5',\n",
-    "        'natr', 'natr_lag1', 'natr_lag2', 'natr_lag3','natr_lag4', 'natr_lag5'\n",
-    "       ]]"
-   ]
-  },
-  {
-   "cell_type": "code",
    "execution_count": 15,
    "id": "93779262-b8fa-4f23-b5b8-c069ee9b63e1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.790672Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.790565Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.792768Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.792424Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.790662Z"
+     "iopub.execute_input": "2026-03-23T23:22:15.929628Z",
+     "iopub.status.busy": "2026-03-23T23:22:15.929447Z",
+     "iopub.status.idle": "2026-03-23T23:22:15.931998Z",
+     "shell.execute_reply": "2026-03-23T23:22:15.931519Z",
+     "shell.execute_reply.started": "2026-03-23T23:22:15.929618Z"
     }
    },
    "outputs": [],
@@ -594,15 +604,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 16,
+   "execution_count": 47,
    "id": "59f470d5-505b-4928-8258-5c38061dbda8",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.793480Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.793312Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.810887Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.810456Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.793471Z"
+     "iopub.execute_input": "2026-03-23T23:38:23.453266Z",
+     "iopub.status.busy": "2026-03-23T23:38:23.452693Z",
+     "iopub.status.idle": "2026-03-23T23:38:23.503144Z",
+     "shell.execute_reply": "2026-03-23T23:38:23.502186Z",
+     "shell.execute_reply.started": "2026-03-23T23:38:23.453206Z"
     }
    },
    "outputs": [
@@ -610,25 +620,58 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "Training on 61208 bars up to 2025-01-01\n",
-      "Predicting on 10342 bars from 2025-01-01 onwards\n"
+      "=============================================\n",
+      "  TRAIN / TEST SPLIT SUMMARY\n",
+      "=============================================\n",
+      "  Train:  52,417 bars  ( 73.3%)  2018-01-02 → 2023-12-31\n",
+      "  Test:   19,126 bars  ( 26.7%)  2024-01-01 → 2026-03-07\n",
+      "  Total:  71,543 bars\n",
+      "=============================================\n",
+      "  Target: ≥70% train / ≤30% test\n",
+      "  Status: ✅ OK\n",
+      "=============================================\n"
      ]
     }
    ],
    "source": [
-    "# Hardcoding the date entered by user, to be set up dynamically in next versions\n",
-    "CUTOFF_DATE = '2025-01-01'\n",
+    "# ── Train / Test Split ─────────────────────────────────────────────────────\n",
+    "CUTOFF_DATE = '2024-01-01'\n",
     "\n",
-    "# Creating the training set for X and y\n",
-    "X_train = X[X.index < CUTOFF_DATE]\n",
-    "y_train = y[y.index < CUTOFF_DATE]\n",
+    "X_train   = X[X.index < CUTOFF_DATE]\n",
+    "y_train   = y[y.index < CUTOFF_DATE]\n",
     "\n",
-    "# Creating the testting set for X and y\n",
     "X_predict = X[X.index >= CUTOFF_DATE]\n",
     "y_predict = y[y.index >= CUTOFF_DATE]  # kept for evaluation only\n",
     "\n",
-    "print(f'Training on {len(X_train)} bars up to {CUTOFF_DATE}')\n",
-    "print(f'Predicting on {len(X_predict)} bars from {CUTOFF_DATE} onwards')"
+    "# ── Split diagnostics ──────────────────────────────────────────────────────\n",
+    "total_bars   = len(X)\n",
+    "train_bars   = len(X_train)\n",
+    "test_bars    = len(X_predict)\n",
+    "train_pct    = train_bars / total_bars * 100\n",
+    "test_pct     = test_bars  / total_bars * 100\n",
+    "\n",
+    "train_start  = X_train.index.min().strftime('%Y-%m-%d')\n",
+    "train_end    = X_train.index.max().strftime('%Y-%m-%d')\n",
+    "test_start   = X_predict.index.min().strftime('%Y-%m-%d')\n",
+    "test_end     = X_predict.index.max().strftime('%Y-%m-%d')\n",
+    "\n",
+    "# Target: train >= 70%, test <= 30%\n",
+    "split_ok = train_pct >= 70.0\n",
+    "\n",
+    "print(f\"{'='*45}\")\n",
+    "print(f\"  TRAIN / TEST SPLIT SUMMARY\")\n",
+    "print(f\"{'='*45}\")\n",
+    "print(f\"  Train:  {train_bars:>6,} bars  ({train_pct:>5.1f}%)  {train_start} → {train_end}\")\n",
+    "print(f\"  Test:   {test_bars:>6,} bars  ({test_pct:>5.1f}%)  {test_start} → {test_end}\")\n",
+    "print(f\"  Total:  {total_bars:>6,} bars\")\n",
+    "print(f\"{'='*45}\")\n",
+    "print(f\"  Target: ≥70% train / ≤30% test\")\n",
+    "print(f\"  Status: {'✅ OK' if split_ok else '❌ WARNING — train below 70%'}\")\n",
+    "print(f\"{'='*45}\")\n",
+    "\n",
+    "if not split_ok:\n",
+    "    print(f\"\\n  ⚠️  Move CUTOFF_DATE earlier to increase training data.\")\n",
+    "    print(f\"      Current train share: {train_pct:.1f}% (minimum: 70.0%)\")"
    ]
   },
   {
@@ -641,15 +684,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 17,
+   "execution_count": 41,
    "id": "54b51c3a-3d3a-4edb-8238-aa4c91e11c97",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.811289Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.811210Z",
-     "iopub.status.idle": "2026-03-23T21:48:19.814563Z",
-     "shell.execute_reply": "2026-03-23T21:48:19.813515Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.811281Z"
+     "iopub.execute_input": "2026-03-23T23:36:51.878765Z",
+     "iopub.status.busy": "2026-03-23T23:36:51.878625Z",
+     "iopub.status.idle": "2026-03-23T23:36:51.882315Z",
+     "shell.execute_reply": "2026-03-23T23:36:51.881835Z",
+     "shell.execute_reply.started": "2026-03-23T23:36:51.878753Z"
     }
    },
    "outputs": [],
@@ -665,25 +708,26 @@
     "    'learning_rate':     0.05,\n",
     "    'num_leaves':        31,\n",
     "    'feature_fraction':  0.8,\n",
-    "    'bagging_fraction':  0.8,\n",
+    "    'bagging_fraction':  0.7,\n",
     "    'bagging_freq':      5,\n",
     "    'scale_pos_weight':  scale_pos_weight,\n",
     "    'seed':              42,\n",
-    "    'verbose':           -1\n",
+    "    'verbose':           -1,\n",
+    "    'min_child_samples': 20    # was missing\n",
     "}"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 18,
+   "execution_count": 42,
    "id": "f979f2a5-73a9-4f9c-ad92-60b90e613c25",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:19.814910Z",
-     "iopub.status.busy": "2026-03-23T21:48:19.814840Z",
-     "iopub.status.idle": "2026-03-23T21:48:22.105151Z",
-     "shell.execute_reply": "2026-03-23T21:48:22.104566Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:19.814903Z"
+     "iopub.execute_input": "2026-03-23T23:36:51.882753Z",
+     "iopub.status.busy": "2026-03-23T23:36:51.882655Z",
+     "iopub.status.idle": "2026-03-23T23:36:53.902051Z",
+     "shell.execute_reply": "2026-03-23T23:36:53.901582Z",
+     "shell.execute_reply.started": "2026-03-23T23:36:51.882744Z"
     }
    },
    "outputs": [],
@@ -713,15 +757,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 19,
+   "execution_count": 43,
    "id": "e5dffb65-4e2e-4c38-8ac8-8b8f8dee5576",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:22.105602Z",
-     "iopub.status.busy": "2026-03-23T21:48:22.105513Z",
-     "iopub.status.idle": "2026-03-23T21:48:22.110521Z",
-     "shell.execute_reply": "2026-03-23T21:48:22.109998Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:22.105593Z"
+     "iopub.execute_input": "2026-03-23T23:36:53.902488Z",
+     "iopub.status.busy": "2026-03-23T23:36:53.902383Z",
+     "iopub.status.idle": "2026-03-23T23:36:53.907384Z",
+     "shell.execute_reply": "2026-03-23T23:36:53.906962Z",
+     "shell.execute_reply.started": "2026-03-23T23:36:53.902479Z"
     }
    },
    "outputs": [],
@@ -771,15 +815,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 20,
+   "execution_count": 55,
    "id": "7bb24de2-2496-41c9-93b9-7a623372011c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:22.110862Z",
-     "iopub.status.busy": "2026-03-23T21:48:22.110787Z",
-     "iopub.status.idle": "2026-03-23T21:48:22.112910Z",
-     "shell.execute_reply": "2026-03-23T21:48:22.112513Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:22.110854Z"
+     "iopub.execute_input": "2026-03-23T23:44:49.626219Z",
+     "iopub.status.busy": "2026-03-23T23:44:49.625037Z",
+     "iopub.status.idle": "2026-03-23T23:44:49.632709Z",
+     "shell.execute_reply": "2026-03-23T23:44:49.631060Z",
+     "shell.execute_reply.started": "2026-03-23T23:44:49.626123Z"
     }
    },
    "outputs": [],
@@ -798,15 +842,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 21,
+   "execution_count": 56,
    "id": "3dde1681-be5b-4df5-9d4e-e2764cfbdd05",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:22.113577Z",
-     "iopub.status.busy": "2026-03-23T21:48:22.113481Z",
-     "iopub.status.idle": "2026-03-23T21:48:22.258162Z",
-     "shell.execute_reply": "2026-03-23T21:48:22.257819Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:22.113568Z"
+     "iopub.execute_input": "2026-03-23T23:44:49.633717Z",
+     "iopub.status.busy": "2026-03-23T23:44:49.633465Z",
+     "iopub.status.idle": "2026-03-23T23:44:49.925968Z",
+     "shell.execute_reply": "2026-03-23T23:44:49.925540Z",
+     "shell.execute_reply.started": "2026-03-23T23:44:49.633691Z"
     }
    },
    "outputs": [],
@@ -820,7 +864,7 @@
     "trade_stop_dist = 0.0    # locked at entry, never changes mid-trade\n",
     "capital = INITIAL_CAPITAL\n",
     "#new ✅: we exit after N bars or after stop loss.\n",
-    "N_HOLD = 5        # exit after N bars\n",
+    "N_HOLD = 12        # exit after N bars\n",
     "bars_in_trade = 0  # counter — reset at each entry\n",
     "\n",
     "\n",
@@ -1001,15 +1045,15 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 22,
+   "execution_count": 57,
    "id": "b6c7e7a4-a0be-4128-8fa1-d3e4a112bb11",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-23T21:48:22.258637Z",
-     "iopub.status.busy": "2026-03-23T21:48:22.258556Z",
-     "iopub.status.idle": "2026-03-23T21:48:22.269160Z",
-     "shell.execute_reply": "2026-03-23T21:48:22.268824Z",
-     "shell.execute_reply.started": "2026-03-23T21:48:22.258629Z"
+     "iopub.execute_input": "2026-03-23T23:44:49.926492Z",
+     "iopub.status.busy": "2026-03-23T23:44:49.926396Z",
+     "iopub.status.idle": "2026-03-23T23:44:49.941446Z",
+     "shell.execute_reply": "2026-03-23T23:44:49.940849Z",
+     "shell.execute_reply.started": "2026-03-23T23:44:49.926484Z"
     }
    },
    "outputs": [
@@ -1022,39 +1066,39 @@
       "╠══════════════════════════════════════╣\n",
       "║ CAPITAL                              ║\n",
       "║  Initial:         $  1,000.00        ║\n",
-      "║  Final:           $    983.59        ║\n",
-      "║  Total Return:        -1.64%         ║\n",
-      "║  Annualised:          -1.41%         ║\n",
+      "║  Final:           $  1,685.16        ║\n",
+      "║  Total Return:        68.52%         ║\n",
+      "║  Annualised:          27.15%         ║\n",
       "╠══════════════════════════════════════╣\n",
       "║ TRADE STATISTICS                     ║\n",
-      "║  Total Trades:           299         ║\n",
-      "║  Winning Trades:         190         ║\n",
-      "║  Losing Trades:          109         ║\n",
-      "║  Win Rate:             63.5%         ║\n",
-      "║  Loss Rate:            36.5%         ║\n",
-      "║  Avg Win PnL:     $      4.84        ║\n",
-      "║  Avg Loss PnL:    $     -3.01        ║\n",
-      "║  Transaction Costs: $  606.75        ║\n",
-      "║  Avg Risk per Trade:$   991.79       ║\n",
-      "║  Avg Position (BTC): 0.009552        ║\n",
-      "║  Avg Position ($):  $   991.79       ║\n",
+      "║  Total Trades:           256         ║\n",
+      "║  Winning Trades:         179         ║\n",
+      "║  Losing Trades:           77         ║\n",
+      "║  Win Rate:             69.9%         ║\n",
+      "║  Loss Rate:            30.1%         ║\n",
+      "║  Avg Win PnL:     $      9.94        ║\n",
+      "║  Avg Loss PnL:    $     -4.60        ║\n",
+      "║  Transaction Costs: $  740.02        ║\n",
+      "║  Avg Risk per Trade:$  1342.58       ║\n",
+      "║  Avg Position (BTC): 0.017285        ║\n",
+      "║  Avg Position ($):  $  1342.58       ║\n",
       "╠══════════════════════════════════════╣\n",
       "║ RISK METRICS                         ║\n",
-      "║  Sharpe Ratio:         -0.39         ║\n",
-      "║  Max Drawdown:        -9.61%         ║\n",
-      "║  Profit Factor:         2.80         ║\n",
+      "║  Sharpe Ratio:         12.71         ║\n",
+      "║  Max Drawdown:        -3.61%         ║\n",
+      "║  Profit Factor:         5.02         ║\n",
       "╠══════════════════════════════════════╣\n",
       "║ BUY & HOLD BENCHMARK                 ║\n",
-      "║  Buy Price:       $ 94,401.14        ║\n",
+      "║  Buy Price:       $ 42,475.23        ║\n",
       "║  Final Price:     $ 67,452.98        ║\n",
-      "║  Final Value:     $    714.54        ║\n",
-      "║  B&H Return:         -28.55%         ║\n",
-      "║  Strategy Return:     -1.64%         ║\n",
+      "║  Final Value:     $  1,588.05        ║\n",
+      "║  B&H Return:          58.81%         ║\n",
+      "║  Strategy Return:     68.52%         ║\n",
       "╠══════════════════════════════════════╣\n",
       "║ ACTION BREAKDOWN                     ║\n",
-      "║  enter_long              299         ║\n",
-      "║  stop_loss               199         ║\n",
-      "║  close_long_time         100         ║\n",
+      "║  enter_long              256         ║\n",
+      "║  stop_loss               217         ║\n",
+      "║  close_long_time          39         ║\n",
       "╚══════════════════════════════════════╝\n"
      ]
     }
