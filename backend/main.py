@@ -9,8 +9,8 @@ from backend.config import (
     NUM_BOOST_ROUND,
     CONFIDENCE_THRESHOLD,
     ATR_MULTIPLIER,
-    RISK_PCT,
     COST_PCT,
+    N_HOLD,
 )
 
 # ==============================================================================
@@ -75,7 +75,7 @@ def train_model(X_train, y_train):
 # FUNCTION 4 — Execution engine
 # ==============================================================================
 
-def run_execution_engine(df, final_model, X_predict, y_predict, initial_capital):
+def run_execution_engine(df, final_model, X_predict, y_predict, initial_capital, position_size):
 
     # Generate predictions
     pred_proba_final = final_model.predict(X_predict)
@@ -85,15 +85,13 @@ def run_execution_engine(df, final_model, X_predict, y_predict, initial_capital)
     signals_df['pred_proba'] = pred_proba_final
     signals_df['true_label'] = y_predict.values
 
-    # Setting the parameters of the execution strategy
-    # (these come from config but are used directly here)
-
     # State variables - maintained by the loop, not stored in Dataframe
     position        = 'flat'
     entry_price     = 0.0
     trade_pos_size  = 0.0    # locked at entry, never changes mid-trade
     trade_stop_dist = 0.0    # locked at entry, never changes mid-trade
     capital         = initial_capital
+    bars_in_trade   = 0      # counter — reset at each entry
 
     # Storing the trade logs
     trade_log = []
@@ -117,95 +115,66 @@ def run_execution_engine(df, final_model, X_predict, y_predict, initial_capital)
 
         # MANAGEMENT BLOCK — only runs when already in a trade (position == 'long')
         # Checks exit conditions in priority order:
-        # Stop Loss → Regime Exit → Signal Exit
+        # Stop Loss → Time Exit
 
         if position == 'long':
 
-            # EXIT 1: Stop Loss
-            # Hard floor — exits immediately if price falls to locked stop level
-            # stop_price is fixed at entry and never moves with ATR
-            # This is the primary capital protection mechanism
-
-            stop_price = entry_price - trade_stop_dist
-
-            if close <= stop_price:
-                pnl = (close - entry_price) * trade_pos_size
-                cost = close * trade_pos_size * COST_PCT
+            # EXIT 1: Stop Loss — position closed when close touches below ema_12
+            if close < row['ema_12']:
+                pnl  = (row['ema_12'] - entry_price) * trade_pos_size
+                cost = row['ema_12'] * trade_pos_size * COST_PCT
                 capital += pnl - cost
                 trade_log.append({
                     'timestamp': timestamp,
                     'action':    'stop_loss',
-                    'close':     close,
+                    'close':     row['ema_12'],
                     'pnl':       pnl,
+                    'cost':      cost,
                     'capital':   capital
                 })
-                # Reset all trade state — trade_stop_dist also reset to avoid stale values
-                position, entry_price, trade_pos_size, trade_stop_dist = 'flat', 0.0, 0.0, 0.0
+                position, entry_price, trade_pos_size, trade_stop_dist, bars_in_trade = 'flat', 0.0, 0.0, 0.0, 0
                 continue
 
-            # EXIT 2: Regime Exit
-            # If market structure shifts out of bull regime, close the long
-            # regardless of model signal — regime gate overrides model
-            # MVP is long-only so no point holding in bear/sideways
-
-            if not bull:
-                pnl = (close - entry_price) * trade_pos_size
+            # EXIT 2: Time Exit — close after N_HOLD bars
+            bars_in_trade += 1
+            if bars_in_trade >= N_HOLD:
+                pnl  = (close - entry_price) * trade_pos_size
                 cost = close * trade_pos_size * COST_PCT
                 capital += pnl - cost
                 trade_log.append({
                     'timestamp': timestamp,
-                    'action':    'close_long_regime',
+                    'action':    'close_long_time',
                     'close':     close,
                     'pnl':       pnl,
+                    'cost':      cost,
                     'capital':   capital
                 })
-                # Reset all trade state — trade_stop_dist also reset to avoid stale values
-                position, entry_price, trade_pos_size, trade_stop_dist = 'flat', 0.0, 0.0, 0.0
-                continue
-
-            # EXIT 3: Signal Exit
-            # Model confidence has flipped to strong SELL territory
-            # Only exits if probability drops below (1 - threshold)
-            # Probabilities near 0.5 do NOT trigger exit — only strong SELL signal does
-
-            if proba <= (1 - CONFIDENCE_THRESHOLD):
-                pnl     = (close - entry_price) * trade_pos_size
-                cost    = close * trade_pos_size * COST_PCT
-                capital += pnl - cost
-                trade_log.append({
-                    'timestamp': timestamp,
-                    'action':    'close_long_signal',
-                    'close':     close,
-                    'pnl':       pnl,
-                    'capital':   capital
-                })
-                position, entry_price, trade_pos_size, trade_stop_dist = 'flat', 0.0, 0.0, 0.0
+                position, entry_price, trade_pos_size, trade_stop_dist, bars_in_trade = 'flat', 0.0, 0.0, 0.0, 0
                 continue
 
         # ENTRY BLOCK - only runs when flat (position == 'flat')
         # All three conditions must be true simultaneously:
         #   1. Bull regime confirmed (regime gate)
         #   2. Model confidence above threshold (signal quality filter)
-        # Entry metrics locked here — never recalculated during the trade
+        # position_size comes from user input — fraction of capital per trade
 
         else:
             if bull and proba >= CONFIDENCE_THRESHOLD:
 
-                # Lock stop distance and position size at entry bar ATR
-                # These values are frozen for the entire duration of this trade
-                trade_stop_dist = ATR_MULTIPLIER * atr
-                trade_pos_size  = (capital * RISK_PCT) / trade_stop_dist
+                trade_pos_size = (capital * position_size) / close
 
-                cost = close * trade_pos_size * COST_PCT
-                capital -= cost
-                position    = 'long'
-                entry_price = close
+                cost          = close * trade_pos_size * COST_PCT
+                capital      -= cost
+                position      = 'long'
+                entry_price   = close
+                bars_in_trade = 0
 
                 trade_log.append({
                     'timestamp':  timestamp,
                     'action':     'enter_long',
                     'close':      close,
                     'pnl':        0,
+                    'cost':       cost,
                     'capital':    capital
                 })
 
@@ -295,10 +264,10 @@ def compute_performance_summary(trade_log, capital, df, cutoff_date, initial_cap
 # MASTER FUNCTION — called by fast.py
 # ==============================================================================
 
-def predict(cutoff_date, initial_capital):
+def predict(cutoff_date, initial_capital, position_size):
     df                                     = load_data()
     X_train, X_predict, y_train, y_predict = split_data(df, cutoff_date)
     final_model                            = train_model(X_train, y_train)
-    trade_log, capital                     = run_execution_engine(df, final_model, X_predict, y_predict, initial_capital)
+    trade_log, capital                     = run_execution_engine(df, final_model, X_predict, y_predict, initial_capital, position_size)
     summary                                = compute_performance_summary(trade_log, capital, df, cutoff_date, initial_capital)
     return summary
