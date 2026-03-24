@@ -26,6 +26,10 @@ def root():
 
 # Endpoint for https://your-domain.com/predict?input_one=154&input_two=199
 @app.get("/backtest")
-def run_backtest(cutoff_date: str = '2025-01-01', initial_capital: float = 1000.0):
-    summary = predict(cutoff_date, initial_capital)
+def run_backtest(
+    cutoff_date:     str   = '2025-01-01',
+    initial_capital: float = 1000.0,
+    position_size:   float = 1.0           # slider: 0.10 to 1.0
+):
+    summary = predict(cutoff_date, initial_capital, position_size)
     return summary

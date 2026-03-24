@@ -27,16 +27,17 @@ LGBM_PARAMS = {
     'learning_rate':     0.05,
     'num_leaves':        31,
     'feature_fraction':  0.8,
-    'bagging_fraction':  0.8,
+    'bagging_fraction':  0.7,
     'bagging_freq':      5,
-    'seed':              42,
     'verbose':           -1,
 }
 
 NUM_BOOST_ROUND = 300
 
 # --- Execution engine parameters
-CONFIDENCE_THRESHOLD = 0.55
+CONFIDENCE_THRESHOLD = 0.58
 ATR_MULTIPLIER       = 1.5
-RISK_PCT             = 0.01   # risk 1% of capital per trade
 COST_PCT             = 0.001  # 0.1% transaction cost per side
+N_HOLD               = 12     # exit after N bars (patience / time exit)
+
+# POSITION_SIZE comes from the user via the API (slider: 0.10 to 1.0)
