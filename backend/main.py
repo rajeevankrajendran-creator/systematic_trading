@@ -354,8 +354,8 @@ def compute_performance_summary(trade_log, capital, df, cutoff_date, initial_cap
 # MASTER FUNCTION — called by fast.py
 # ==============================================================================
 
-def predict(cutoff_date, initial_capital, position_size):
-    df                                     = load_data()
+def predict(cutoff_date, initial_capital, position_size, df):
+    #df                                     = load_data()
     X_train, X_predict, y_train, y_predict = split_data(df, cutoff_date)
     final_model                            = train_model(X_train, y_train)
     trade_log, capital                     = run_execution_engine(df, final_model, X_predict, y_predict,

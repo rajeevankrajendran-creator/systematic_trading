@@ -49,6 +49,7 @@ LGBM_PARAMS = {
     'bagging_fraction': 0.8,
     'bagging_freq':     5,
     'verbose':          -1,
+    'n_jobs':           4,
 }
 
 NUM_BOOST_ROUND = 300
