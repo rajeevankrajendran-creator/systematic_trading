@@ -17,14 +17,14 @@ app.add_middleware(
     allow_headers=["*"],  # Allows all headers
 )
 
-# Endpoint for https://your-domain.com/
+# Endpoint for https://systematic-trading-api-469354767887.europe-west1.run.app
 @app.get("/")
 def root():
     return {
         'message': "Hi, The API is running!"
     }
 
-# Endpoint for https://your-domain.com/predict?input_one=154&input_two=199
+# Endpoint for https://systematic-trading-api-469354767887.europe-west1.run.app/backtest?cutoff_date=2024-01-01&initial_capital=10000&position_size=1.0
 @app.get("/backtest")
 def run_backtest(
     cutoff_date:     str   = '2025-01-01',
