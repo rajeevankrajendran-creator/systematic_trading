@@ -176,5 +176,3 @@ systematic_trading/
 This project was created by students of Le Wagon Batch 2211 for educational and demonstration purposes only. Nothing herein constitutes financial, investment, or trading advice. All performance data is simulated via backtesting on historical data and is not indicative of future results. Any action taken based on this project is done strictly at the user's own risk.
 
 ---
-
-*Collaborators: Isabella [Last Name] · Taylan [Last Name]*
