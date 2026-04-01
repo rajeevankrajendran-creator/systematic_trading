@@ -6,8 +6,8 @@ Data used
 Minute-level BTC/USDT OHLCV data sourced from Kaggle, resampled to 1-hour bars and filtered from 2017 onwards.
 
 # API
-The API is accessible at:
-https://systematic-trading-api-469354767887.europe-west1.run.app
+Lime Demo accessible at:
+https://systematictrading.streamlit.app/
 Main endpoints:
 
 GET /predict — returns trading signals and backtest performance metrics for a given date range
